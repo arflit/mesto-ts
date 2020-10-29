@@ -3,5 +3,13 @@
   align-self: end;
   position: relative;
   bottom: 9px;
+}
 
+@media (max-width: 620px) {
+  .profile__edit-button {
+    margin-left: 10px;
+    bottom: 5px;
+    width: 18px;
+    height: 18px;
+  }
 }
