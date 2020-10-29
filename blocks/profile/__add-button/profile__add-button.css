@@ -1,4 +1,6 @@
 .profile__add-button {
+  align-self: center;
+  margin-left: auto;
   display: flex;
   align-items: center;
   justify-content: center;
