@@ -5,8 +5,6 @@
   width: 58px;
   height: 58px;
   background: transparent url(../../../images/CloseIcon.png) center no-repeat;
-  border-style: none;
-  outline-style: none;
 }
 
 @media (max-width: 620px) {

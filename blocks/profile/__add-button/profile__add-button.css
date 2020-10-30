@@ -1,14 +1,13 @@
 .profile__add-button {
   align-self: center;
   margin-left: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 50px;
   width: 150px;
   box-sizing: border-box;
   border: 2px solid white;
   border-radius: 2px;
+  background: transparent url(../../../images/PlusIcon.svg) center no-repeat;
+
 }
 
 @media (max-width: 620px) {

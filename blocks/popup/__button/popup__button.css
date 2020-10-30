@@ -4,8 +4,6 @@
   height: 50px;
   font-size: 18px;
   color: white;
-  border-style: none;
-  outline-style: none;
 }
 
 @media (max-width: 620px) {
