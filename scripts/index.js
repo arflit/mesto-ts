@@ -30,3 +30,7 @@ closePopup();
 editButton.addEventListener('click', openPopup);
 popupCloseButton.addEventListener('click', closePopup);
 formElement.addEventListener('submit', formSubmitHandler);
+document.addEventListener('keydown', function(e) {
+  let keyCode = e.keyCode;
+  if (keyCode === 27) closePopup();
+});
