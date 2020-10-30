@@ -1,15 +1,20 @@
 .profile__edit-button {
   margin-left: 18px;
-  align-self: end;
+  align-self: flex-end;
   position: relative;
   bottom: 9px;
+}
+
+@media (max-width: 920px) {
+  .profile__edit-button {
+    bottom: 5px;
+    width: 18px;
+    height: 18px;
+  }
 }
 
 @media (max-width: 620px) {
   .profile__edit-button {
     margin-left: 10px;
-    bottom: 5px;
-    width: 18px;
-    height: 18px;
   }
 }

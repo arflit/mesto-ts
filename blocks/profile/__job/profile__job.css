@@ -1,10 +1,10 @@
-.profile__about {
+.profile__job {
   font-size: 18px;
   margin: 6px 0 0 0;
 }
 
 @media (max-width: 620px) {
-  .profile__about {
+  .profile__job {
     font-size: 14px;
     align-self: center;
   }

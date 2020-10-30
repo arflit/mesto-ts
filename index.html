@@ -24,7 +24,7 @@
             <h2 class="profile__name">Жак-Ив Кусто</h2>
             <img src="./images/EditButton.svg" alt="Кнопка редактирования имени" class="profile__edit-button button">
           </div>
-          <p class="profile__about">Исследователь океана</p>
+          <p class="profile__job">Исследователь океана</p>
         </div>
         <div class="profile__add-button button"><img src="./images/PlusIcon.svg" class="profile__plus-icon" alt="Кнопка добавления новой карточки"></div>
       </div>
@@ -33,42 +33,42 @@
           <img src="./images/kirill-pershin-1088404-unsplash.jpg" class="card__image" alt="Карачаевск">
           <div class="card__alt">
             <h2 class="card__title">Карачаевск</h2>
-            <img src="images/Like.svg" class="card__like" alt="Мне нравится">
+            <button class="card__like button" type="button"></button>
           </div>  
         </div>
         <div class="card">
           <img src="./images/kirill-pershin-1404681-unsplash.png" class="card__image" alt="Гора Эльбрус">
           <div class="card__alt">
             <h2 class="card__title">Гора Эльбрус</h2>
-            <img src="images/Like.svg" class="card__like" alt="Мне нравится">
+            <button class="card__like button" type="button"></button>
           </div>
         </div>
         <div class="card">
           <img src="./images/kirill-pershin-1088404-unsplash.jpg" class="card__image" alt="Карачаевск">
           <div class="card__alt">
             <h2 class="card__title">Карачаевск</h2>
-            <img src="images/Like.svg" class="card__like" alt="Мне нравится">
+            <button class="card__like button" type="button"></button>
           </div>
         </div>
         <div class="card">
           <img src="./images/kirill-pershin-1404681-unsplash.png" class="card__image" alt="Гора Эльбрус">
           <div class="card__alt">
             <h2 class="card__title">Гора Эльбрус</h2>
-            <img src="images/Like.svg" class="card__like" alt="Мне нравится">
+            <button class="card__like button" type="button"></button>
           </div>
         </div>
         <div class="card">
           <img src="./images/kirill-pershin-1088404-unsplash.jpg" class="card__image" alt="Карачаевск">
           <div class="card__alt">
             <h2 class="card__title">Карачаевск</h2>
-            <img src="images/Like.svg" class="card__like" alt="Мне нравится">
+            <button class="card__like button" type="button"></button>
           </div>
         </div>
         <div class="card">
           <img src="./images/kirill-pershin-1404681-unsplash.png" class="card__image" alt="Гора Эльбрус">
           <div class="card__alt">
             <h2 class="card__title">Гора Эльбрус</h2>
-            <img src="images/Like.svg" class="card__like" alt="Мне нравится">
+            <button class="card__like button" type="button"></button>
           </div>
         </div>
       </div>
@@ -76,6 +76,18 @@
     <footer class="footer">
       <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
     </footer>
+    <div class="popup">
+      <div class="popup__container">
+        <button type="button" class="popup__close button" alt="Закрыть"></button> 
+        <form class="popup__form">
+          <h1 class="popup__title">Редактировать профиль</h1>
+          <input type="text" class="popup__input" id="name" name="name">
+          <input type="text" class="popup__input" id="job" name="job">
+          <button type="submit" class="popup__button button">Сохранить</button>
+        </form>
+      </div>
+    </div>
   </div>
+  <script src="./scripts/index.js"></script> 
 </body>
 </html>
