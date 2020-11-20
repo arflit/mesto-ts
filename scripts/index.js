@@ -17,6 +17,8 @@ let popupCard = document.querySelector('.popup-card');
 let titleInput = document.querySelector('#place-title');
 let imageInput = document.querySelector('#place-image');
 let formCardElement = document.querySelector('.popup-card__form')
+//лайк
+
 
 
 function openPopupName () {
@@ -39,7 +41,14 @@ function addCard (placeTitle, placeImage) {
 const cardElement = tempCard.cloneNode(true);
 cardElement.querySelector('.card__image').src = placeImage;
 cardElement.querySelector('.card__title').textContent = placeTitle;
-cardsList.append(cardElement);
+
+const likeButton = cardElement.querySelector('.card__like');
+likeButton.addEventListener('click', function (evt) {
+const eventTarget = evt.target;
+eventTarget.classList.toggle('card__like_active');
+});
+
+cardsList.prepend(cardElement);
 }
 
 //добавление карточек на старте

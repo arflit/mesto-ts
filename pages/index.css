@@ -27,6 +27,8 @@
   @import url(../blocks/card/__alt/card__alt.css);
   @import url(../blocks/card/__title/card__title.css);
   @import url(../blocks/card/__like/card__like.css);
+  @import url(../blocks/card/__like/card__like.css);
+  @import url(../blocks/card/__like/_active/card__like_active.css);
 
 @import url(../blocks/popup-name/popup-name.css);
   @import url(../blocks/popup-name/_opened/popup-name_opened.css);
