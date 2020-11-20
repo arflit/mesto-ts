@@ -37,13 +37,24 @@ popupImage.classList.add('popup-opened');
 popupImageContainer.querySelector('.popup-image__picture').src = image;
 popupImageContainer.querySelector('.popup-image__picture').alt = title;
 popupImageContainer.querySelector('.popup-image__title').textContent = title;
-
 }
 
-function closePopup () {
-popupCard.classList.remove('popup-opened');
-popupName.classList.remove('popup-opened');
-popupImage.classList.remove('popup-opened');
+function closePopupName () {
+popupName.classList.add('popup-closing');
+setTimeout(() => {  popupName.classList.remove('popup-opened');
+popupName.classList.remove('popup-closing'); }, 500);
+}
+
+function closePopupCard () {
+popupCard.classList.add('popup-closing');
+setTimeout(() => {  popupCard.classList.remove('popup-opened');
+popupCard.classList.remove('popup-closing'); }, 500);
+}
+
+function closePopupImage () {
+popupImage.classList.add('popup-closing');
+setTimeout(() => {  popupImage.classList.remove('popup-opened');
+popupImage.classList.remove('popup-closing'); }, 500);
 }
 
 //добавление карточки
@@ -127,19 +138,20 @@ closePopup();
 
 //попап редактирования имени
 editButton.addEventListener('click', openPopupName);
-popupNameCloseButton.addEventListener('click', closePopup);
+popupNameCloseButton.addEventListener('click', closePopupName);
 formElement.addEventListener('submit', formSubmitHandler);
 
 //попап добавления карточки
 newPlaceButton.addEventListener('click', openPopupCard);
-popupCardCloseButton.addEventListener('click', closePopup);
+popupCardCloseButton.addEventListener('click', closePopupCard);
 formCardElement.addEventListener('submit', cardSubmitHandler);
 
 //попап с картинкой
-popupImageCloseButton.addEventListener('click', closePopup);
+popupImageCloseButton.addEventListener('click', closePopupImage);
 
-
+/*
 document.addEventListener('keydown', function(e) {
   let keyCode = e.keyCode;
   if (keyCode === 27) closePopup();
 });
+*/
