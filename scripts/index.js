@@ -17,9 +17,7 @@ let popupCard = document.querySelector('.popup-card');
 let titleInput = document.querySelector('#place-title');
 let imageInput = document.querySelector('#place-image');
 let formCardElement = document.querySelector('.popup-card__form')
-//лайк
-
-
+//удаление карточек
 
 function openPopupName () {
 popupName.classList.add('popup-name_opened');
@@ -40,6 +38,7 @@ popupName.classList.remove('popup-name_opened');
 function addCard (placeTitle, placeImage) {
 const cardElement = tempCard.cloneNode(true);
 cardElement.querySelector('.card__image').src = placeImage;
+cardElement.querySelector('.card__image').alt = placeTitle;
 cardElement.querySelector('.card__title').textContent = placeTitle;
 
 const likeButton = cardElement.querySelector('.card__like');
@@ -47,6 +46,13 @@ likeButton.addEventListener('click', function (evt) {
 const eventTarget = evt.target;
 eventTarget.classList.toggle('card__like_active');
 });
+
+const deleteButton = cardElement.querySelector('.card__trash-button');
+deleteButton.addEventListener('click', function (evt) {
+const delEventTarget = evt.target;
+const delCardItem = delEventTarget.closest('.card');
+delCardItem.remove();
+}); 
 
 cardsList.prepend(cardElement);
 }
@@ -111,6 +117,9 @@ formElement.addEventListener('submit', formSubmitHandler);
 newPlaceButton.addEventListener('click', openPopupCard);
 popupCardCloseButton.addEventListener('click', closePopup);
 formCardElement.addEventListener('submit', cardSubmitHandler);
+
+//удаление карточки
+
 
 document.addEventListener('keydown', function(e) {
   let keyCode = e.keyCode;
