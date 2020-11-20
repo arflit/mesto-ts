@@ -17,21 +17,33 @@ let popupCard = document.querySelector('.popup-card');
 let titleInput = document.querySelector('#place-title');
 let imageInput = document.querySelector('#place-image');
 let formCardElement = document.querySelector('.popup-card__form')
-//удаление карточек
+//попап с картинкой
+let popupImage = document.querySelector('.popup-image');
+let popupImageCloseButton = document.querySelector('.popup-image__close')
+let popupImageContainer = document.querySelector('.popup-image__container');
 
 function openPopupName () {
-popupName.classList.add('popup-name_opened');
+popupName.classList.add('popup-opened');
 nameInput.setAttribute('value', profileName.textContent);
 jobInput.setAttribute('value', profileJob.textContent);
 }
 
 function openPopupCard () {
-popupCard.classList.add('popup-card_opened');
+popupCard.classList.add('popup-opened');
+}
+
+function openPopupImage (image, title) {
+popupImage.classList.add('popup-opened');
+popupImageContainer.querySelector('.popup-image__picture').src = image;
+popupImageContainer.querySelector('.popup-image__picture').alt = title;
+popupImageContainer.querySelector('.popup-image__title').textContent = title;
+
 }
 
 function closePopup () {
-popupCard.classList.remove('popup-card_opened');
-popupName.classList.remove('popup-name_opened');
+popupCard.classList.remove('popup-opened');
+popupName.classList.remove('popup-opened');
+popupImage.classList.remove('popup-opened');
 }
 
 //добавление карточки
@@ -45,6 +57,11 @@ const likeButton = cardElement.querySelector('.card__like');
 likeButton.addEventListener('click', function (evt) {
 const eventTarget = evt.target;
 eventTarget.classList.toggle('card__like_active');
+});
+
+const picture = cardElement.querySelector('.card__image');
+picture.addEventListener('click', function (evt) {
+openPopupImage(placeImage, placeTitle);
 });
 
 const deleteButton = cardElement.querySelector('.card__trash-button');
@@ -118,7 +135,8 @@ newPlaceButton.addEventListener('click', openPopupCard);
 popupCardCloseButton.addEventListener('click', closePopup);
 formCardElement.addEventListener('submit', cardSubmitHandler);
 
-//удаление карточки
+//попап с картинкой
+popupImageCloseButton.addEventListener('click', closePopup);
 
 
 document.addEventListener('keydown', function(e) {

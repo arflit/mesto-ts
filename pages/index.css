@@ -4,6 +4,7 @@
 /* вся страница и технические блоки для миксов */
 @import url(../blocks/page/page.css);
 @import url(../blocks/button/button.css);
+
 /* шапка сайта */
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
@@ -31,7 +32,6 @@
   @import url(../blocks/card/__trash-button/card__trash-button.css);
 
 @import url(../blocks/popup-name/popup-name.css);
-  @import url(../blocks/popup-name/_opened/popup-name_opened.css);
   @import url(../blocks/popup-name/__container/popup-name__container.css);
   @import url(../blocks/popup-name/__form/popup-name__form.css);
   @import url(../blocks/popup-name/__title/popup-name__title.css);
@@ -40,7 +40,6 @@
   @import url(../blocks/popup-name/__close/popup-name__close.css);
 
 @import url(../blocks/popup-card/popup-card.css);
-  @import url(../blocks/popup-card/_opened/popup-card_opened.css);
   @import url(../blocks/popup-card/__container/popup-card__container.css);
   @import url(../blocks/popup-card/__form/popup-card__form.css);
   @import url(../blocks/popup-card/__title/popup-card__title.css);
@@ -48,6 +47,14 @@
   @import url(../blocks/popup-card/__button/popup-card__button.css);
   @import url(../blocks/popup-card/__close/popup-card__close.css);
 
+@import url(../blocks/popup-image/popup-image.css);
+  @import url(../blocks/popup-image/__container/popup-image__container.css);
+  @import url(../blocks/popup-image/__close/popup-image__close.css);
+  @import url(../blocks/popup-image/__picture/popup-image__picture.css);
+  @import url(../blocks/popup-image/__title/popup-image__title.css);
+  
 /* подвал */
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
+
+@import url(../blocks/popup-opened/popup-opened.css)
