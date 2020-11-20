@@ -1,26 +1,26 @@
 //попап редактирования имени
-let editButton = document.querySelector('.profile__edit-button');
-let popupNameCloseButton = document.querySelector('.popup-name__close')
-let popupName = document.querySelector('.popup-name');
-let profileName = document.querySelector('.profile__name');
-let profileJob = document.querySelector('.profile__job');
-let nameInput = document.querySelector('#name');
-let jobInput = document.querySelector('#job');
-let formElement = document.querySelector('.popup-name__form')
+const editButton = document.querySelector('.profile__edit-button');
+const popupNameCloseButton = document.querySelector('.popup-name__close')
+const popupName = document.querySelector('.popup-name');
+const profileName = document.querySelector('.profile__name');
+const profileJob = document.querySelector('.profile__job');
+const nameInput = document.querySelector('#name');
+const jobInput = document.querySelector('#job');
+const formElement = document.querySelector('.popup-name__form')
 //добавление карточек
-let cardsList = document.querySelector('.cards__list');
-let tempCard = document.querySelector('#tempcard').content;
+const cardsList = document.querySelector('.cards__list');
+const tempCard = document.querySelector('#tempcard').content;
 //попап добавления карточки
-let newPlaceButton = document.querySelector('.profile__add-button');
-let popupCardCloseButton = document.querySelector('.popup-card__close')
-let popupCard = document.querySelector('.popup-card');
-let titleInput = document.querySelector('#place-title');
-let imageInput = document.querySelector('#place-image');
-let formCardElement = document.querySelector('.popup-card__form')
+const newPlaceButton = document.querySelector('.profile__add-button');
+const popupCardCloseButton = document.querySelector('.popup-card__close')
+const popupCard = document.querySelector('.popup-card');
+const titleInput = document.querySelector('#place-title');
+const imageInput = document.querySelector('#place-image');
+const formCardElement = document.querySelector('.popup-card__form')
 //попап с картинкой
-let popupImage = document.querySelector('.popup-image');
-let popupImageCloseButton = document.querySelector('.popup-image__close')
-let popupImageContainer = document.querySelector('.popup-image__container');
+const popupImage = document.querySelector('.popup-image');
+const popupImageCloseButton = document.querySelector('.popup-image__close')
+const popupImageContainer = document.querySelector('.popup-image__container');
 
 function openPopupName () {
 popupName.classList.add('popup-opened');
@@ -120,8 +120,8 @@ initialCards.forEach(function (item) {
 //обработчик редактирования имени
 function formSubmitHandler (evt) {
 evt.preventDefault();
-let newName = document.querySelector('#name');
-let newJob = document.querySelector('#job');
+const newName = document.querySelector('#name');
+const newJob = document.querySelector('#job');
 profileName.textContent = newName.value;
 profileJob.textContent = newJob.value;
 closePopup();
@@ -130,8 +130,8 @@ closePopup();
 //обработчик добавления карточек
 function cardSubmitHandler (evt) {
 evt.preventDefault();
-let placeTitle = titleInput.value;
-let placeImage = imageInput.value;
+const placeTitle = titleInput.value;
+const placeImage = imageInput.value;
 addCard (placeTitle, placeImage);
 closePopup();
 }
@@ -151,7 +151,7 @@ popupImageCloseButton.addEventListener('click', closePopupImage);
 
 /*
 document.addEventListener('keydown', function(e) {
-  let keyCode = e.keyCode;
+  const keyCode = e.keyCode;
   if (keyCode === 27) closePopup();
 });
 */
