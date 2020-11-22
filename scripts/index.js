@@ -32,7 +32,7 @@ function hidePopup () {
   setTimeout(() => {
     popupContainer.classList.remove('popup__container_form');
     popupContainer.classList.remove('popup__container_picture');
-    const todel = popup.querySelector('.popup__form');
+    const todel = [popup.querySelector('.popup__form');
     const todel2 = popup.querySelector('.popup__picture');
     const todel3 = popup.querySelector('.popup__pic-title');
     if (todel != null) todel.remove();
