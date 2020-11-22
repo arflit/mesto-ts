@@ -37,9 +37,35 @@
       <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
-      <div class="popup__container">
+    <div class="popup" id="popup-profile">
+      <div class="popup__container popup__container_form">
         <button type="button" class="popup__close-button button"></button>
+        <form class="popup__form" id="profile-edit-form">
+          <h2 class="popup__form-title">Редактировать профиль</h2>
+          <input type="text" class="popup__form-input" id="name" name="name" placeholder="Введите имя">
+          <input type="text" class="popup__form-input" id="job" name="job" placeholder="А чем заниметесь?">
+          <button type="submit" class="popup__form-submit-button button">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="popup" id="popup-addcard">
+      <div class="popup__container popup__container_form">
+        <button type="button" class="popup__close-button button"></button>
+        <form class="popup__form" id="profile-addcard-form">
+          <h2 class="popup__form-title">Новое место</h2>
+          <input type="text" class="popup__form-input" id="place" name="place" placeholder="Название">
+          <input type="text" class="popup__form-input" id="picture" name="picture" placeholder="Ссылка на кыартинку">
+          <button type="submit" class="popup__form-submit-button button">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="popup popup_dark" id="popup-bigpicture">
+      <div class="popup__container popup__container_picture">
+        <button type="button" class="popup__close-button button"></button>
+        <img src="./images/favicon.png" class="popup__picture" alt="temp">
+        <h2 class="popup__pic-title"></h2>
       </div>
     </div>
     
@@ -54,18 +80,6 @@
       <button type="button" class="card__trash-button button"></button>
     </li>
   </template>
-  <template id="popup-form">
-    <form class="popup__form" name="profile-edit-form">
-      <h2 class="popup__form-title"></h2>
-      <input type="text" class="popup__form-input">
-      <input type="text" class="popup__form-input">
-      <button type="submit" class="popup__form-submit-button button">Сохранить</button>
-    </form>
-  </template>
-  <template id="popup-picture">
-    <img src="./images/favicon.png" class="popup__picture" alt="temp">
-    <h2 class="popup__pic-title"></h2>
-  </template>
-  <script src="./scripts/index.js"></script> 
+\  <script src="./scripts/index.js"></script> 
 </body>
 </html>
