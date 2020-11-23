@@ -45,8 +45,6 @@
   @import url(../blocks/popup/__picture/popup__picture.css);
   @import url(../blocks/popup/__pic-title/popup__pic-title.css);
 
-
-  
 /* подвал */
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);

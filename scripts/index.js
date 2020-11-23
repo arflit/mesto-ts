@@ -5,10 +5,9 @@ const popupBigPicture = document.querySelector('#popup-bigpicture');
 //Кнопки вызова
 const editButton = document.querySelector('.profile__edit-button');
 const newPlaceButton = document.querySelector('.profile__add-button');
-//Кнопки и параметры закрытия
+//Кнопки закрытия
 const popupHideButtons = document.querySelectorAll('.popup__close-button');
 const escKeycode = 27;
-const animationDuration = 500;
 //Формы 
 const profileForm = popupProfile.querySelector('#profile-edit-form');
 const newCardForm = popupAddCard.querySelector('#profile-addcard-form');
@@ -27,23 +26,27 @@ const profileJob = document.querySelector('.profile__job');
 const cardsList = document.querySelector('.cards__list');
 const tempCard = document.querySelector('#tempcard').content;
 
+function showPopup(popup) {
+  popup.classList.add('popup_opened');
+}
+
 function openPopupProfile () {
   profileNameField.value = profileName.textContent;
   profileJobField.value = profileJob.textContent;
-  popupProfile.classList.add('popup_opened');
+  showPopup(popupProfile);
 }
 
 function openPopupAddCard () {
   newCardPlaceField.value = null;
   newCardPictureField.value = null;
-  popupAddCard.classList.add('popup_opened');
+  showPopup(popupAddCard);
 }
 
 function openPopupBigPicture (image, title) {
   popupBigPicturePicture.src = image;
   popupBigPicturePicture.alt = title;
   popupBigPictureTitle.textContent = title;
-  popupBigPicture.classList.add('popup_opened');
+  showPopup(popupBigPicture);
 }
 
 function hidePopup () {
@@ -139,9 +142,9 @@ newCardForm.addEventListener('submit', function (evt) {
 
 //закрытие попапа
 popupHideButtons.forEach(function (button) {
-  button.addEventListener('click', hidePopup)
+  button.addEventListener('click', hidePopup);
 });
 document.addEventListener('keydown', function(e) {
   const keyCode = e.keyCode;
-  if (keyCode === escKeycode) hidePopup;
+  if (keyCode === escKeycode) hidePopup();
 });
