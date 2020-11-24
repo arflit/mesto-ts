@@ -148,3 +148,4 @@ document.addEventListener('keydown', function(e) {
   const keyCode = e.keyCode;
   if (keyCode === escKeycode) hidePopup();
 });
+
