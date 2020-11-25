@@ -7,7 +7,6 @@ const editButton = document.querySelector('.profile__edit-button');
 const newPlaceButton = document.querySelector('.profile__add-button');
 //Кнопки закрытия
 const popupHideButtons = document.querySelectorAll('.popup__close-button');
-const escKeycode = 27;
 //Формы 
 const profileForm = popupProfile.querySelector('#profile-edit-form');
 const newCardForm = popupAddCard.querySelector('#profile-addcard-form');
@@ -145,7 +144,6 @@ popupHideButtons.forEach(function (button) {
   button.addEventListener('click', hidePopup);
 });
 document.addEventListener('keydown', function(e) {
-  const keyCode = e.keyCode;
-  if (keyCode === escKeycode) hidePopup();
+  if (e.key === 'Escape') hidePopup();
 });
 
