@@ -8,13 +8,13 @@ const newPlaceButton = document.querySelector('.profile__add-button');
 //Кнопки закрытия
 const popupHideButtons = document.querySelectorAll('.popup__close-button');
 //Формы 
-const profileForm = popupProfile.querySelector('#profile-edit-form');
-const newCardForm = popupAddCard.querySelector('#profile-addcard-form');
+const profileForm = document.forms.editform;
+const newCardForm = document.forms.addcardform;
 //Поля
-const profileNameField = popupProfile.querySelector('#name');
-const profileJobField = popupProfile.querySelector('#job');
-const newCardPlaceField = popupAddCard.querySelector('#place');
-const newCardPictureField = popupAddCard.querySelector('#picture');
+const profileNameField = profileForm.elements.name;
+const profileJobField = profileForm.elements.job;
+const newCardPlaceField = newCardForm.elements.place;
+const newCardPictureField = newCardForm.elements.picture;
 //Попап с большой картинкой
 const popupBigPicturePicture = popupBigPicture.querySelector('.popup__picture');
 const popupBigPictureTitle = popupBigPicture.querySelector('.popup__pic-title');
@@ -25,10 +25,20 @@ const profileJob = document.querySelector('.profile__job');
 const cardsList = document.querySelector('.cards__list');
 const tempCard = document.querySelector('#tempcard').content;
 
-function showPopup(popup) {
-  popup.classList.add('popup_opened');
+function hidePopup () {
+  const popupOpened = document.querySelector('.popup_opened');
+  if (popupOpened) popupOpened.classList.remove('popup_opened');
 }
 
+function showPopup(popup) {
+  popup.classList.add('popup_opened');
+  popup.addEventListener('click', function (evt) {
+    if (evt.target.classList.contains('popup')) hidePopup();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') hidePopup();
+  });  
+}
 function openPopupProfile () {
   profileNameField.value = profileName.textContent;
   profileJobField.value = profileJob.textContent;
@@ -36,8 +46,7 @@ function openPopupProfile () {
 }
 
 function openPopupAddCard () {
-  newCardPlaceField.value = null;
-  newCardPictureField.value = null;
+  newCardForm.reset();
   showPopup(popupAddCard);
 }
 
@@ -48,10 +57,29 @@ function openPopupBigPicture (image, title) {
   showPopup(popupBigPicture);
 }
 
-function hidePopup () {
-  const popupOpened = document.querySelector('.popup_opened');
-  if (popupOpened) popupOpened.classList.remove('popup_opened');
+//Лайки в карточках
+function switchLike(button) {
+  button.classList.toggle('card__like_active');
 }
+
+cardsList.addEventListener('click', function (evt) {
+  if (evt.target.classList.contains('card__like')) {
+    switchLike(evt.target);
+  }
+});
+
+//Удаление карточки
+function deleteCard(button) {
+  const delCardItem = button.closest('.card');
+  delCardItem.remove();
+}
+
+cardsList.addEventListener('click', function (evt) {
+  if (evt.target.classList.contains('card__trash-button')) {
+    deleteCard(evt.target);
+  }
+});
+
 
 //добавление карточки
 function getCard (placeTitle, placeImage) {
@@ -61,24 +89,6 @@ function getCard (placeTitle, placeImage) {
   picture.src = placeImage;
   picture.alt = placeTitle;
   title.textContent = placeTitle;
-
-  const likeButton = cardElement.querySelector('.card__like');
-  likeButton.addEventListener('click', function (evt) {
-    const eventTarget = evt.target;
-    eventTarget.classList.toggle('card__like_active');
-  });
-
-  picture.addEventListener('click', function () {
-    openPopupBigPicture(placeImage, placeTitle);
-  });
-
-  const trashButton = cardElement.querySelector('.card__trash-button');
-  trashButton.addEventListener('click', function (evt) {
-    const delEventTarget = evt.target;
-    const delCardItem = delEventTarget.closest('.card');
-    delCardItem.remove();
-  }); 
-
   return cardElement;
 }
 
@@ -139,11 +149,17 @@ newCardForm.addEventListener('submit', function (evt) {
   hidePopup();
 });
 
+//попап с большой картинкой
+cardsList.addEventListener('click', function (evt) {
+  if (evt.target.classList.contains('card__image')) {
+    const url = 1;
+    const title = 1;
+    openPopupBigPicture(url, title);
+  }
+});
+
 //закрытие попапа
 popupHideButtons.forEach(function (button) {
   button.addEventListener('click', hidePopup);
-});
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') hidePopup();
 });
 
