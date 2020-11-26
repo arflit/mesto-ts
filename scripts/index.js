@@ -57,30 +57,6 @@ function openPopupBigPicture (image, title) {
   showPopup(popupBigPicture);
 }
 
-//Лайки в карточках
-function switchLike(button) {
-  button.classList.toggle('card__like_active');
-}
-
-cardsList.addEventListener('click', function (evt) {
-  if (evt.target.classList.contains('card__like')) {
-    switchLike(evt.target);
-  }
-});
-
-//Удаление карточки
-function deleteCard(button) {
-  const delCardItem = button.closest('.card');
-  delCardItem.remove();
-}
-
-cardsList.addEventListener('click', function (evt) {
-  if (evt.target.classList.contains('card__trash-button')) {
-    deleteCard(evt.target);
-  }
-});
-
-
 //добавление карточки
 function getCard (placeTitle, placeImage) {
   const cardElement = tempCard.cloneNode(true);
@@ -89,6 +65,24 @@ function getCard (placeTitle, placeImage) {
   picture.src = placeImage;
   picture.alt = placeTitle;
   title.textContent = placeTitle;
+
+  const likeButton = cardElement.querySelector('.card__like');
+  likeButton.addEventListener('click', function (evt) {
+    const eventTarget = evt.target;
+    eventTarget.classList.toggle('card__like_active');
+  });
+
+  picture.addEventListener('click', function () {
+    openPopupBigPicture(placeImage, placeTitle);
+  });
+
+  const trashButton = cardElement.querySelector('.card__trash-button');
+  trashButton.addEventListener('click', function (evt) {
+    const delEventTarget = evt.target;
+    const delCardItem = delEventTarget.closest('.card');
+    delCardItem.remove();
+  }); 
+
   return cardElement;
 }
 
@@ -149,14 +143,6 @@ newCardForm.addEventListener('submit', function (evt) {
   hidePopup();
 });
 
-//попап с большой картинкой
-cardsList.addEventListener('click', function (evt) {
-  if (evt.target.classList.contains('card__image')) {
-    const url = evt.target.src;
-    const title = evt.target.closest('.card').querySelector('.card__title').textContent;
-    openPopupBigPicture(url, title);
-  }
-});
 
 //закрытие попапа
 popupHideButtons.forEach(function (button) {
