@@ -152,8 +152,9 @@ newCardForm.addEventListener('submit', function (evt) {
 //попап с большой картинкой
 cardsList.addEventListener('click', function (evt) {
   if (evt.target.classList.contains('card__image')) {
-    const url = 1;
-    const title = 1;
+    const url = evt.target.src;
+    const title = evt.target.closest('.card').querySelector('.card__title').textContent;
+    console.log(title);
     openPopupBigPicture(url, title);
   }
 });
