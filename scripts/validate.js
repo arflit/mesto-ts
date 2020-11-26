@@ -30,16 +30,22 @@ const hasInvalidInput = (inputList) => {
   })
 }; 
 
+const enableButton = (buttonElement, inactiveButtonClass) => {
+  buttonElement.classList.remove(inactiveButtonClass);
+  buttonElement.removeAttribute('disabled');
+}
+
+const disableButton = (buttonElement, inactiveButtonClass) => {
+  buttonElement.classList.add(inactiveButtonClass);
+  buttonElement.setAttribute('disabled', '');
+}
+
 const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
-  // Если есть хотя бы один невалидный инпут
   if (hasInvalidInput(inputList)) {
-    // сделай кнопку неактивной
-    buttonElement.classList.add(inactiveButtonClass);
-    buttonElement.setAttribute('disabled', '');
-  } else {
-        // иначе сделай кнопку активной
-    buttonElement.classList.remove(inactiveButtonClass);
-    buttonElement.removeAttribute('disabled');
+    disableButton(buttonElement, inactiveButtonClass)
+  } 
+  else {
+    enableButton(buttonElement, inactiveButtonClass)
   }
 }; 
 
@@ -59,7 +65,7 @@ const isValid = (formElement, inputElement, inputErrorClass, errorClass) => {
 const setEventListeners = (formElement, inputList, inputErrorClass, errorClass, submitButtonSelector, inactiveButtonClass) => {
 
   const buttonElement = formElement.querySelector(submitButtonSelector);
-  toggleButtonState(inputList, buttonElement, inactiveButtonClass);
+  disableButton(buttonElement, inactiveButtonClass);
 
   // Находим все поля внутри формы,
   // сделаем из них массив методом Array.from
@@ -89,6 +95,7 @@ const enableValidation = (settings) => {
     const inputList = Array.from(formElement.querySelectorAll(inpurSelector));
     formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
+      disableButton(formElement.querySelector(submitButtonSelector), inactiveButtonClass);
     });
     // Для каждой формы вызовем функцию setEventListeners,
     // передав ей элемент формы
