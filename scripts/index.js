@@ -154,7 +154,6 @@ cardsList.addEventListener('click', function (evt) {
   if (evt.target.classList.contains('card__image')) {
     const url = evt.target.src;
     const title = evt.target.closest('.card').querySelector('.card__title').textContent;
-    console.log(title);
     openPopupBigPicture(url, title);
   }
 });
