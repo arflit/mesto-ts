@@ -19,7 +19,7 @@ const hideInputError = (formElement, inputElement, inputErrorClass, errorClass) 
   errorElement.textContent = '';
 }; 
 
-const hasInvalidInput = (inputList) => {
+/* const hasInvalidInput = (inputList) => {
   // проходим по этому массиву методом some
   return inputList.some((inputElement) => {
         // Если поле не валидно, колбэк вернёт true
@@ -29,8 +29,8 @@ const hasInvalidInput = (inputList) => {
     return !inputElement.validity.valid;
   })
 }; 
-
-const enableButton = (buttonElement, inactiveButtonClass) => {
+ */
+/* const enableButton = (buttonElement, inactiveButtonClass) => {
   buttonElement.classList.remove(inactiveButtonClass);
   buttonElement.removeAttribute('disabled');
 }
@@ -48,7 +48,7 @@ const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
     enableButton(buttonElement, inactiveButtonClass)
   }
 }; 
-
+ */
 
 const isValid = (formElement, inputElement, inputErrorClass, errorClass) => {
   if (!inputElement.validity.valid) {
@@ -85,14 +85,14 @@ const setEventListeners = (formElement, inputList, inputErrorClass, errorClass, 
 
 const enableValidation = (settings) => {
   const formList = Array.from(document.querySelectorAll(settings.formSelector));
-  const inpurSelector = settings.inputSelector;
+  const inputSelector = settings.inputSelector;
   const inputErrorClass = settings.inputErrorClass;
   const errorClass = settings.errorClass;
   const submitButtonSelector = settings.submitButtonSelector;
   const inactiveButtonClass = settings.inactiveButtonClass;
   // Переберём полученную коллекцию
   formList.forEach((formElement) => {
-    const inputList = Array.from(formElement.querySelectorAll(inpurSelector));
+    const inputList = Array.from(formElement.querySelectorAll(inputSelector));
     formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
       disableButton(formElement.querySelector(submitButtonSelector), inactiveButtonClass);

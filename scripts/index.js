@@ -20,6 +20,20 @@ const profileJob = document.querySelector('.profile__job');
 //Добавление карточек
 const cardsList = document.querySelector('.cards__list');
 import { Card } from './Card.js';
+//валидация
+import { FormValidator } from './FormValidator.js';
+const validationSettings = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__form-input',
+  submitButtonSelector: '.popup__form-submit-button',
+  inactiveButtonClass: 'popup__form-submit-button_disabled',
+  inputErrorClass: 'popup__form-input_type_error',
+  errorClass: 'popup__form-error_visible'
+}
+const profileFormValidation = new FormValidator(validationSettings, profileForm);
+profileFormValidation.enableValidation();
+const newCardFormValidation = new FormValidator(validationSettings, newCardForm);
+newCardFormValidation.enableValidation();
 
 //закрытие попапов
 
