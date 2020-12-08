@@ -1,10 +1,11 @@
-import { InputField } from './InputField.js';
 export class FormValidator {
   constructor (settings, formElement) {
     this._formElement = formElement; //вся форма
     this._inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));
     this._inactiveButtonClass = settings.inactiveButtonClass;
     this._buttonElement = formElement.querySelector(settings.submitButtonSelector);
+    this._inputErrorClass = settings.inputErrorClass;
+    this._errorClass = settings.errorClass; 
     this._settings = settings;
   } 
 
@@ -32,6 +33,28 @@ export class FormValidator {
     }
   }
 
+  _showInputError(field) {
+    const errorElement = this._formElement.querySelector(`.${field}-error`);
+    field.classList.add(this._inputErrorClass);
+    errorElement.textContent = field.validationMessage;
+    errorElement.classList.add(this._errorClass);
+  }
+
+  _hideInputError(field) {
+    const errorElement = this._formElement.querySelector(`.${field}-error`);
+    field.classList.remove(this._inputErrorClass);
+    errorElement.textContent = '';
+    errorElement.classList.remove(this._errorClass);
+  }
+
+  _isValid(field) {
+    if (!field.validity.valid) {
+      this._showInputError(field);
+    } else {
+      this._hideInputError(field);
+    }
+  }
+
   _setEventListeners() {
     this._formElement.addEventListener('input', () => {
       this._toggleButtonState();
@@ -40,15 +63,16 @@ export class FormValidator {
       evt.preventDefault();
       this._disableButton();
     });
+//функция, перебирающая массив полей и навешивающая на каждое лисенер: 
+    this._inputList.forEach(function(inputElement) {
+      inputElement.addEventListener('input', () => {
+        //вот это ниже не работает: "Cannot read property '_isValid' of undefined"
+        this._isValid(inputElement);
+      });
+    });
   }
 
   enableValidation () {
-    const settings = this._settings;
-    const form = this._formElement;
-    this._inputList.forEach(function(inputElement) {
-      const field = new InputField(inputElement, settings, form);
-      field.enableFieldValidation();
-    });
     this._setEventListeners();
     this._toggleButtonState();
   }
