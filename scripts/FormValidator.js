@@ -6,7 +6,6 @@ export class FormValidator {
     this._buttonElement = formElement.querySelector(settings.submitButtonSelector);
     this._inputErrorClass = settings.inputErrorClass;
     this._errorClass = settings.errorClass; 
-    this._settings = settings;
   } 
 
   _enableButton() {
@@ -34,14 +33,14 @@ export class FormValidator {
   }
 
   _showInputError(field) {
-    const errorElement = this._formElement.querySelector(`.${field}-error`);
+    const errorElement = this._formElement.querySelector(`.${field.id}-error`);
     field.classList.add(this._inputErrorClass);
     errorElement.textContent = field.validationMessage;
     errorElement.classList.add(this._errorClass);
   }
 
   _hideInputError(field) {
-    const errorElement = this._formElement.querySelector(`.${field}-error`);
+    const errorElement = this._formElement.querySelector(`.${field.id}-error`);
     field.classList.remove(this._inputErrorClass);
     errorElement.textContent = '';
     errorElement.classList.remove(this._errorClass);
@@ -64,7 +63,7 @@ export class FormValidator {
       this._disableButton();
     });
 //функция, перебирающая массив полей и навешивающая на каждое лисенер: 
-    this._inputList.forEach(function(inputElement) {
+    this._inputList.forEach(inputElement => {
       inputElement.addEventListener('input', () => {
         //вот это ниже не работает: "Cannot read property '_isValid' of undefined"
         this._isValid(inputElement);
