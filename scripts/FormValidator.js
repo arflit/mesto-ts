@@ -1,7 +1,7 @@
 export class FormValidator {
   constructor (settings, formElement) {
     this._formElement = formElement; //вся форма
-    this._inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));
+    this._inputList = Array.from(formElement.querySelectorAll(settings.inputSelector)); //массив с полями ввода формы
     this._inactiveButtonClass = settings.inactiveButtonClass;
     this._buttonElement = formElement.querySelector(settings.submitButtonSelector);
     this._inputErrorClass = settings.inputErrorClass;
@@ -55,24 +55,20 @@ export class FormValidator {
   }
 
   _setEventListeners() {
-    this._formElement.addEventListener('input', () => {
-      this._toggleButtonState();
-    });
-    this._formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-      this._disableButton();
-    });
-//функция, перебирающая массив полей и навешивающая на каждое лисенер: 
     this._inputList.forEach(inputElement => {
       inputElement.addEventListener('input', () => {
-        //вот это ниже не работает: "Cannot read property '_isValid' of undefined"
         this._isValid(inputElement);
+        this._toggleButtonState();
       });
     });
   }
 
   enableValidation () {
     this._setEventListeners();
+    this._formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      this._disableButton();
+    }); // окей, перенёс этот обработчик из _setEventListeners сюда - но зачем? почему? не очень понимаю. 
     this._toggleButtonState();
   }
 }
