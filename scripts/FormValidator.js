@@ -68,7 +68,7 @@ export class FormValidator {
     this._formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._disableButton();
-    }); // окей, перенёс этот обработчик из _setEventListeners сюда - но зачем? почему? не очень понимаю. 
+    });
     this._toggleButtonState();
   }
 }
