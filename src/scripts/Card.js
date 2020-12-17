@@ -50,7 +50,6 @@ export class Card {
     });
   }
 
-
   generateCard() {
     this._element = this._getTemplate();
 
