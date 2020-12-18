@@ -1,3 +1,5 @@
+import './pages/index.css';
+
 //Попапы
 const popupProfile = document.querySelector('#popup-profile');
 const popupAddCard = document.querySelector('#popup-addcard');
@@ -19,9 +21,9 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 //Добавление карточек
 const cardsList = document.querySelector('.cards__list');
-import { Card } from './Card.js';
+import { Card } from './scripts/Card.js';
 //валидация
-import { FormValidator } from './FormValidator.js';
+import { FormValidator } from './scripts/FormValidator.js';
 const validationSettings = {
   formSelector: '.popup__form',
   inputSelector: '.popup__form-input',

@@ -6,18 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Учебный проект в Яндекс.Практикуме - Mesto">
   <meta name="author" content="Аркадий Флитман">
-  <link rel="stylesheet" href="./pages/index.css">
-  <link rel="icon" href="./images/favicon.png">
+  <link rel="icon" href="<%=require('./images/favicon.png')%>">
   <title>Mesto</title>
 </head>
 <body>
   <div class="page">
     <header class="header">
-      <img src="./images/logo-white.svg" alt="Логотип: надпись Mesto.Russia" class="header__logo">
+      <img src="<%=require('./images/logo-white.svg')%>" alt="Логотип: надпись Mesto.Russia" class="header__logo">
     </header>
     <main class="content">
       <section class="profile">
-        <img src="./images/avatar.jpg" alt="Аватар" class="profile__avatar">
+        <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар" class="profile__avatar">
         <div class="profile__info-container">
           <div class="profile__name-container">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -68,7 +67,7 @@
     <div class="popup popup_dark" id="popup-bigpicture">
       <div class="popup__container popup__container_picture">
         <button type="button" class="popup__close-button button"></button>
-        <img src="./images/favicon.png" class="popup__picture" alt="temp">
+        <img src="<%=require('./images/favicon.png')%>" class="popup__picture" alt="temp">
         <h2 class="popup__pic-title"></h2>
       </div>
     </div>
@@ -76,7 +75,7 @@
   </div>
   <template class="tempcard">
     <li class="card">
-      <img src="./images/favicon.png" class="card__image button" alt="temp">
+      <img src="<%=require('./images/favicon.png')%>" class="card__image button" alt="temp">
       <div class="card__alt">
         <h2 class="card__title"></h2>
         <button class="card__like button" type="button"></button>
@@ -84,6 +83,5 @@
       <button type="button" class="card__trash-button button"></button>
     </li>
   </template>
-  <script type="module" src="./scripts/index.js"></script> 
 </body>
 </html>

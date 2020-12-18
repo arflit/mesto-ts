@@ -1,4 +1,4 @@
-import { showPopup } from './index.js';
+import { showPopup } from '../index.js';
 
 export class Card {
 
