@@ -1,11 +1,10 @@
-import { showPopup } from '../pages/index.js';
-
 export default class Card {
 
-  constructor (placeTitle, placeImage, cardSelector) {
+  constructor (placeTitle, placeImage, cardSelector, { handleCardClick } ) {
     this._title = placeTitle;
     this._image = placeImage;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -26,18 +25,6 @@ export default class Card {
     this._element.remove();
   }
 
-  _openPopupBigPicture () {
-    const popupBigPicture = document.querySelector('#popup-bigpicture');
-    const popupPicture = popupBigPicture.querySelector('.popup__picture');
-    const popupTitle = popupBigPicture.querySelector('.popup__pic-title');
-    
-    popupPicture.src = this._image;
-    popupPicture.alt = this._title;
-    popupTitle.textContent = this._title;
-
-    showPopup(popupBigPicture);
-  }
-
   _setEventListeners() {
     this._element.querySelector('.card__like').addEventListener('click', () => {
       this._handleLikeClick();
@@ -46,7 +33,7 @@ export default class Card {
       this._handleCardRemove();
     });
     this._element.querySelector('.card__image').addEventListener('click', () => {
-      this._openPopupBigPicture();
+      this._handleCardClick(this._image, this._title);
     });
   }
 

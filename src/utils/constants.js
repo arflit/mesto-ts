@@ -1,6 +1,9 @@
 //Попапы
 export const popupProfile = document.querySelector('#popup-profile');
 export const popupAddCard = document.querySelector('#popup-addcard');
+export const popupWithImageSelector = '#popup-bigpicture';
+export const popupWithImagePictureSelector = '.popup__picture';
+export const popupWithImageTitleSelector = '.popup__pic-title';
 //Кнопки вызова
 export const editButton = document.querySelector('.profile__edit-button');
 export const newPlaceButton = document.querySelector('.profile__add-button');

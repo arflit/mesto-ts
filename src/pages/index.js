@@ -16,7 +16,10 @@ import {
   profileJob,
   cardsList,
   validationSettings,
-  initialCards
+  initialCards,
+  popupWithImageSelector,
+  popupWithImagePictureSelector,
+  popupWithImageTitleSelector
 } from '../utils/constants.js';
 
 import Card from '../components/Card.js';
@@ -24,6 +27,7 @@ import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import Popup from '../components/Popup.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 
 
 
@@ -39,19 +43,24 @@ newCardFormValidation.enableValidation();
 
 //открытие попапов
 
-function showPopup(popup) {
+/* function showPopup(popup) {
   popup.classList.add('popup_opened');
   addOverlayListener(popup);
   addEscapeListerner(popup);
-}
+} */
 function openPopupProfile () {
   profileNameField.value = profileName.textContent;
   profileJobField.value = profileJob.textContent;
-  showPopup(popupProfile);
-}
+/*   showPopup(popupProfile);
+ */}
 
 function addCard (placeTitle, placeImage) {
-  const cardElement = new Card(placeTitle, placeImage, '.tempcard');
+  const cardElement = new Card(placeTitle, placeImage, '.tempcard', {
+    handleCardClick: (image, title) => {
+      const popupWithImage = new PopupWithImage(popupWithImageSelector, image, title, popupWithImagePictureSelector, popupWithImageTitleSelector);
+      popupWithImage.open();
+    }
+  });
   cardsList.prepend(cardElement.generateCard());
 }
 
