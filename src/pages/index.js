@@ -19,50 +19,27 @@ import {
   initialCards
 } from '../utils/constants.js';
 
-
-import { Card } from '../components/Card.js';
+import Card from '../components/Card.js';
 //валидация
-import { FormValidator } from '../components/FormValidator.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import Popup from '../components/Popup.js';
+
+
+
+
+
+
 
 const profileFormValidation = new FormValidator(validationSettings, profileForm);
 profileFormValidation.enableValidation();
 const newCardFormValidation = new FormValidator(validationSettings, newCardForm);
 newCardFormValidation.enableValidation();
 
-//закрытие попапов
-
-function hidePopup (popup) {
-  popup.classList.remove('popup_opened'); 
-  document.removeEventListener('keydown', listenEsc);  
-}
-
-function listenEsc (evt) {
-  if (evt.key === 'Escape') {
-    const popup = document.querySelector('.popup_opened');
-    hidePopup(popup);
-  }
-}
-
-function addEscapeListerner () {
-  document.addEventListener('keydown', listenEsc);  
-}
-
-function addOverlayListener (popup) {
-  popup.addEventListener('click', function (evt) {
-    if (evt.target.classList.contains('popup')) hidePopup(evt.target.closest('.popup'));
-  });
-}
-
-popupHideButtons.forEach(function (button) {
-  button.addEventListener('click', function(evt) {
-    const popup = evt.target.closest('.popup');
-    hidePopup(popup);
-  });
-});
 
 //открытие попапов
 
-export function showPopup(popup) {
+function showPopup(popup) {
   popup.classList.add('popup_opened');
   addOverlayListener(popup);
   addEscapeListerner(popup);

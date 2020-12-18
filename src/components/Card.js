@@ -1,6 +1,6 @@
 import { showPopup } from '../pages/index.js';
 
-export class Card {
+export default class Card {
 
   constructor (placeTitle, placeImage, cardSelector) {
     this._title = placeTitle;

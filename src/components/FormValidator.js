@@ -1,4 +1,4 @@
-export class FormValidator {
+export default class FormValidator {
   constructor (settings, formElement) {
     this._formElement = formElement; //вся форма
     this._inputList = Array.from(formElement.querySelectorAll(settings.inputSelector)); //массив с полями ввода формы
