@@ -1,37 +1,29 @@
-import './pages/index.css';
+import './index.css';
 
-//Попапы
-const popupProfile = document.querySelector('#popup-profile');
-const popupAddCard = document.querySelector('#popup-addcard');
-//Кнопки вызова
-const editButton = document.querySelector('.profile__edit-button');
-const newPlaceButton = document.querySelector('.profile__add-button');
-//Кнопки закрытия
-const popupHideButtons = document.querySelectorAll('.popup__close-button');
-//Формы 
-const profileForm = document.forms.editform;
-const newCardForm = document.forms.addcardform;
-//Поля
-const profileNameField = profileForm.elements.name;
-const profileJobField = profileForm.elements.job;
-const newCardPlaceField = newCardForm.elements.place;
-const newCardPictureField = newCardForm.elements.picture;
-//Содержимое страницы 
-const profileName = document.querySelector('.profile__name');
-const profileJob = document.querySelector('.profile__job');
-//Добавление карточек
-const cardsList = document.querySelector('.cards__list');
-import { Card } from './scripts/Card.js';
+import {
+  popupProfile, 
+  popupAddCard, 
+  editButton, 
+  newPlaceButton,
+  popupHideButtons,
+  profileForm,
+  newCardForm,
+  profileNameField,
+  profileJobField,
+  newCardPlaceField,
+  newCardPictureField,
+  profileName,
+  profileJob,
+  cardsList,
+  validationSettings,
+  initialCards
+} from '../utils/constants.js';
+
+
+import { Card } from '../components/Card.js';
 //валидация
-import { FormValidator } from './scripts/FormValidator.js';
-const validationSettings = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__form-input',
-  submitButtonSelector: '.popup__form-submit-button',
-  inactiveButtonClass: 'popup__form-submit-button_disabled',
-  inputErrorClass: 'popup__form-input_type_error',
-  errorClass: 'popup__form-error_visible'
-}
+import { FormValidator } from '../components/FormValidator.js';
+
 const profileFormValidation = new FormValidator(validationSettings, profileForm);
 profileFormValidation.enableValidation();
 const newCardFormValidation = new FormValidator(validationSettings, newCardForm);
@@ -87,32 +79,7 @@ function addCard (placeTitle, placeImage) {
 }
 
 //добавление карточек на старте
-const initialCards = [
-  {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-]; 
+
 
 initialCards.forEach(function (item) {
   addCard (item.name, item.link);
