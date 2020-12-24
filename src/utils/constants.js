@@ -1,6 +1,6 @@
 //Попапы
-export const popupProfile = document.querySelector('#popup-profile');
-export const popupAddCard = document.querySelector('#popup-addcard');
+export const popupProfileSelector = '#popup-profile';
+export const popupAddCardSelector = '#popup-addcard';
 export const popupWithImageSelector = '#popup-bigpicture';
 export const popupWithImagePictureSelector = '.popup__picture';
 export const popupWithImageTitleSelector = '.popup__pic-title';
@@ -18,10 +18,11 @@ export const profileJobField = profileForm.elements.job;
 export const newCardPlaceField = newCardForm.elements.place;
 export const newCardPictureField = newCardForm.elements.picture;
 //Содержимое страницы 
-export const profileName = document.querySelector('.profile__name');
-export const profileJob = document.querySelector('.profile__job');
+export const nameSelector = '.profile__name';
+export const jobSelector = '.profile__job';
 //Добавление карточек
-export const cardsList = document.querySelector('.cards__list');
+export const cardsListSelector = '.cards__list';
+export const cardTemplateSelector = '.tempcard';
 export const validationSettings = {
   formSelector: '.popup__form',
   inputSelector: '.popup__form-input',
