@@ -30,7 +30,6 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
-import { data } from 'autoprefixer';
 
 
 const profileFormValidation = new FormValidator(validationSettings, profileForm);
@@ -40,34 +39,28 @@ newCardFormValidation.enableValidation();
 
 const userInfo = new UserInfo(nameSelector, jobSelector);
 
-/* const defaultCardList = new Section({
-  data: initialCards,
-  renderer: ({ name, link }) => {
-    const cardElement = new Card(name, link, cardTemplateSelector, {
-      handleCardClick: (image, title) => {
-        const popupWithImage = new PopupWithImage(popupWithImageSelector, image, title, popupWithImagePictureSelector, popupWithImageTitleSelector);
-        popupWithImage.open();
-      }
-    });
-    const newCard = cardElement.generateCard();
-    defaultCardList.addItem(newCard);
-  }
-}, cardsListSelector); */
-/* 
 function addCard (placeTitle, placeImage) {
   const cardElement = new Card(placeTitle, placeImage, cardTemplateSelector, {
-    
+    handleCardClick: (image, title) => {
+      const popupWithImage = new PopupWithImage(popupWithImageSelector, image, title, popupWithImagePictureSelector, popupWithImageTitleSelector);
+      popupWithImage.open();
+    }
   });
- 
 
+  const cardSection = new Section({
+    items: [],
+    renderer: () => {
+      
+    }
+  }, cardsListSelector);
   
   cardSection.addItem(cardElement.generateCard());
 }
- 
+
 initialCards.forEach(function (item) {
   addCard (item.name, item.link);
 });
- */
+
 
 
 editButton.addEventListener('click', function(){
