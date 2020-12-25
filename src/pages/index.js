@@ -39,29 +39,23 @@ newCardFormValidation.enableValidation();
 
 const userInfo = new UserInfo(nameSelector, jobSelector);
 
-function addCard (placeTitle, placeImage) {
-  const cardElement = new Card(placeTitle, placeImage, cardTemplateSelector, {
-    handleCardClick: (image, title) => {
-      const popupWithImage = new PopupWithImage(popupWithImageSelector, image, title, popupWithImagePictureSelector, popupWithImageTitleSelector);
-      popupWithImage.open();
+const defaultCardList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const placeImage = item.link;
+    const placeTitle = item.name;
+    const cardElement = new Card(placeTitle, placeImage, cardTemplateSelector, {
+      handleCardClick: (placeImage, placeTitle) => {
+        const popupWithImage = new PopupWithImage(popupWithImageSelector, placeImage, placeTitle, popupWithImagePictureSelector, popupWithImageTitleSelector);
+        popupWithImage.open();  
+      }
+    });
+    const cardGenerated = cardElement.generateCard();
+    defaultCardList._container.prepend(cardGenerated);
     }
-  });
+}, cardsListSelector);
 
-  const cardSection = new Section({
-    items: [],
-    renderer: () => {
-      
-    }
-  }, cardsListSelector);
-  
-  cardSection.addItem(cardElement.generateCard());
-}
-
-initialCards.forEach(function (item) {
-  addCard (item.name, item.link);
-});
-
-
+defaultCardList.renderItems();
 
 editButton.addEventListener('click', function(){
   const popupProfile = new PopupWithForm(popupProfileSelector, {
@@ -79,10 +73,15 @@ editButton.addEventListener('click', function(){
 
 newPlaceButton.addEventListener('click', function(){
   const popupNewCard = new PopupWithForm(popupAddCardSelector, {
-    handleFormSubmit: () => {
+    handleFormSubmit: (evt) => {
       evt.preventDefault();
       const values = popupNewCard._getInputValues();
-      
+      const data = {
+        name: values[0],
+        link: values[1]
+      };
+      defaultCardList.addItem(data);
+      popupNewCard.close();
     }
   });
   popupNewCard.open();
