@@ -7,16 +7,9 @@ export const popupWithImageTitleSelector = '.popup__pic-title';
 //Кнопки вызова
 export const editButton = document.querySelector('.profile__edit-button');
 export const newPlaceButton = document.querySelector('.profile__add-button');
-//Кнопки закрытия
-export const popupHideButtons = document.querySelectorAll('.popup__close-button');
 //Формы 
 export const profileForm = document.forms.editform;
 export const newCardForm = document.forms.addcardform;
-//Поля
-export const profileNameField = profileForm.elements.name;
-export const profileJobField = profileForm.elements.job;
-export const newCardPlaceField = newCardForm.elements.place;
-export const newCardPictureField = newCardForm.elements.picture;
 //Содержимое страницы 
 export const nameSelector = '.profile__name';
 export const jobSelector = '.profile__job';
