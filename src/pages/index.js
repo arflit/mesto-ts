@@ -34,11 +34,44 @@ newCardFormValidation.enableValidation();
 
 const userInfo = new UserInfo(nameSelector, jobSelector);
 
+
+const popupProfile = new PopupWithForm(popupProfileSelector, {
+  handleFormSubmit: () => {
+    const values = popupProfile._getInputValues();
+    userInfo.setUserInfo(values);
+    popupProfile.close();
+  }
+});
+
+popupProfile.setFormSubmitListener();
+
+editButton.addEventListener('click', function(){
+  popupProfile._setInputValues(userInfo.getUserInfo());
+  popupProfile.open();
+});
+
+
+const popupNewCard = new PopupWithForm(popupAddCardSelector, {
+  handleFormSubmit: () => {
+    const values = popupNewCard._getInputValues();
+    defaultCardList.addItem(values);
+    popupNewCard.close();
+  }
+});
+
+popupNewCard.setFormSubmitListener();
+
+newPlaceButton.addEventListener('click', function(){
+  popupNewCard.open();
+});
+
+
+
 const defaultCardList = new Section({
   items: initialCards,
   renderer: (item) => {
-    const placeImage = item.link;
-    const placeTitle = item.name;
+    const placeImage = item.picture;
+    const placeTitle = item.place;
     const cardElement = new Card(placeTitle, placeImage, cardTemplateSelector, {
       handleCardClick: (placeImage, placeTitle) => {
         const popupWithImage = new PopupWithImage(popupWithImageSelector, placeImage, placeTitle, popupWithImagePictureSelector, popupWithImageTitleSelector);
@@ -52,32 +85,7 @@ const defaultCardList = new Section({
 
 defaultCardList.renderItems();
 
-editButton.addEventListener('click', function(){
-  const popupProfile = new PopupWithForm(popupProfileSelector, {
-    handleFormSubmit: (evt) => {
-      evt.preventDefault();
-      const values = popupProfile._getInputValues();
-      userInfo.setUserInfo(values[0], values[1]);
-      popupProfile.close();
-    }
-  });
-  popupProfile._setInputValues(userInfo.getUserInfo());
-  popupProfile.open();
-});
 
 
-newPlaceButton.addEventListener('click', function(){
-  const popupNewCard = new PopupWithForm(popupAddCardSelector, {
-    handleFormSubmit: (evt) => {
-      evt.preventDefault();
-      const values = popupNewCard._getInputValues();
-      const data = {
-        name: values[0],
-        link: values[1]
-      };
-      defaultCardList.addItem(data);
-      popupNewCard.close();
-    }
-  });
-  popupNewCard.open();
-});
+
+

@@ -8,28 +8,26 @@ export default class PopupWithForm extends Popup {
     this._fields = Array.from(this._form.querySelectorAll('.popup__form-input'));
   }
 
-  _setInputValues(values) {
-    this._fields.forEach((field, i) => {
-      field.value = values[i];
-    })
+  _setInputValues({ name, job }) {
+    this._fields[0].value = name;
+    this._fields[1].value = job;
   }
 
   _getInputValues() {
-    const values = this._fields.map((field) => {
-      return field.value;
-    });
-    return values;
+    const values = {};
+    this._fields.forEach((field) => values[field.name] = field.value);
+    return values; 
   } //собирает данные всех полей формы
 
-  _setEventListeners() {
-    super._setEventListeners();
-    this._form.addEventListener('submit', this._handleFormSubmit);
-  } //не только добавлять обработчик клика иконке закрытия, но и 
-  //добавлять обработчик сабмита формы.
+  setFormSubmitListener() {
+    this._form.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      this._handleFormSubmit();
+    });
+  }
 
   close() {
     super.close();
     this._form.reset();
-    this._form.removeEventListener('submit', this._handleFormSubmit);
   }//при закрытии попапа форма должна ещё и сбрасываться.
 }
