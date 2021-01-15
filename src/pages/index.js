@@ -36,8 +36,7 @@ const userInfo = new UserInfo(nameSelector, jobSelector);
 
 
 const popupProfile = new PopupWithForm(popupProfileSelector, {
-  handleFormSubmit: () => {
-    const values = popupProfile._getInputValues();
+  handleFormSubmit: (values) => {
     userInfo.setUserInfo(values);
     popupProfile.close();
   }
@@ -46,14 +45,13 @@ const popupProfile = new PopupWithForm(popupProfileSelector, {
 popupProfile.setFormSubmitListener();
 
 editButton.addEventListener('click', function(){
-  popupProfile._setInputValues(userInfo.getUserInfo());
+  popupProfile.setInputValues(userInfo.getUserInfo());
   popupProfile.open();
 });
 
 
 const popupNewCard = new PopupWithForm(popupAddCardSelector, {
-  handleFormSubmit: () => {
-    const values = popupNewCard._getInputValues();
+  handleFormSubmit: (values) => {
     defaultCardList.addItem(values);
     popupNewCard.close();
   }
@@ -65,7 +63,7 @@ newPlaceButton.addEventListener('click', function(){
   popupNewCard.open();
 });
 
-
+const popupWithImage = new PopupWithImage(popupWithImageSelector, popupWithImagePictureSelector, popupWithImageTitleSelector);
 
 const defaultCardList = new Section({
   items: initialCards,
@@ -74,12 +72,11 @@ const defaultCardList = new Section({
     const placeTitle = item.place;
     const cardElement = new Card(placeTitle, placeImage, cardTemplateSelector, {
       handleCardClick: (placeImage, placeTitle) => {
-        const popupWithImage = new PopupWithImage(popupWithImageSelector, placeImage, placeTitle, popupWithImagePictureSelector, popupWithImageTitleSelector);
-        popupWithImage.open();  
+        popupWithImage.open(placeImage, placeTitle);  
       }
     });
     const cardGenerated = cardElement.generateCard();
-    defaultCardList._container.prepend(cardGenerated);
+    defaultCardList.container.prepend(cardGenerated);
     }
 }, cardsListSelector);
 

@@ -8,7 +8,7 @@ export default class PopupWithForm extends Popup {
     this._fields = Array.from(this._form.querySelectorAll('.popup__form-input'));
   }
 
-  _setInputValues({ name, job }) {
+  setInputValues({ name, job }) {
     this._fields[0].value = name;
     this._fields[1].value = job;
   }
@@ -22,7 +22,8 @@ export default class PopupWithForm extends Popup {
   setFormSubmitListener() {
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      this._handleFormSubmit();
+      const values = this._getInputValues();
+      this._handleFormSubmit(values);
     });
   }
 
