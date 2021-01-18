@@ -17,8 +17,8 @@ export default class Card {
     return cardElement;
   }
 
-  _handleLikeClick() {
-    this._element.querySelector('.card__like').classList.toggle('card__like_active');
+  _handleLikeClick(evt) {
+    evt.target.classList.toggle('card__like_active');
   }
 
   _handleCardRemove() {
@@ -26,8 +26,8 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._element.querySelector('.card__like').addEventListener('click', () => {
-      this._handleLikeClick();
+    this._element.querySelector('.card__like').addEventListener('click', (evt) => {
+      this._handleLikeClick(evt);
     });
     this._element.querySelector('.card__trash-button').addEventListener('click', () => {
       this._handleCardRemove();

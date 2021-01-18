@@ -19,7 +19,8 @@ export default class PopupWithForm extends Popup {
     return values; 
   } //собирает данные всех полей формы
 
-  setFormSubmitListener() {
+  setEventListeners() {
+    super.setEventListeners();
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
       const values = this._getInputValues();

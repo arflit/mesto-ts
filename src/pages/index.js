@@ -42,7 +42,7 @@ const popupProfile = new PopupWithForm(popupProfileSelector, {
   }
 });
 
-popupProfile.setFormSubmitListener();
+popupProfile.setEventListeners();
 
 editButton.addEventListener('click', function(){
   popupProfile.setInputValues(userInfo.getUserInfo());
@@ -57,13 +57,15 @@ const popupNewCard = new PopupWithForm(popupAddCardSelector, {
   }
 });
 
-popupNewCard.setFormSubmitListener();
+popupNewCard.setEventListeners();
 
 newPlaceButton.addEventListener('click', function(){
   popupNewCard.open();
 });
 
 const popupWithImage = new PopupWithImage(popupWithImageSelector, popupWithImagePictureSelector, popupWithImageTitleSelector);
+
+popupWithImage.setEventListeners();
 
 const defaultCardList = new Section({
   items: initialCards,
