@@ -78,7 +78,7 @@ const defaultCardList = new Section({
       }
     });
     const cardGenerated = cardElement.generateCard();
-    defaultCardList.container.prepend(cardGenerated);
+    cardElement.addCard(defaultCardList, cardGenerated);
     }
 }, cardsListSelector);
 

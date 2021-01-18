@@ -25,6 +25,10 @@ export default class Card {
     this._element.remove();
   }
 
+  addCard(thisContainer, card) {
+    thisContainer.container.prepend(card);
+  }
+
   _setEventListeners() {
     this._element.querySelector('.card__like').addEventListener('click', (evt) => {
       this._handleLikeClick(evt);
