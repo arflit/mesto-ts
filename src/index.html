@@ -16,7 +16,10 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар" class="profile__avatar">
+        <div class="profile__avatar-container">
+          <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар" class="profile__avatar">
+          <div class="profile__avatar-edit-button"></div>
+        </div>
         <div class="profile__info-container">
           <div class="profile__name-container">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -49,6 +52,18 @@
         </form>
       </div>
     </div>
+
+    <div class="popup" id="popup-avatar">
+      <div class="popup__container popup__container_form">
+        <button type="button" class="popup__close-button button"></button>
+        <form class="popup__form" name="avatarform" novalidate>
+          <h2 class="popup__form-title">Обновить аватар</h2>
+          <input type="url" class="popup__form-input" id="avatar" name="avatar" placeholder="Ссылка на аватар" required>
+          <div class="popup__form-error-container"><span class="avatar-error popup__form-error"></span></div>
+          <button type="submit" class="popup__form-submit-button button">Сохранить</button>
+        </form>
+      </div>
+    </div>
     
     <div class="popup" id="popup-addcard">
       <div class="popup__container popup__container_form">
@@ -71,13 +86,28 @@
         <h2 class="popup__pic-title"></h2>
       </div>
     </div>
+
+    <div class="popup" id="popup-delete-card">
+      <div class="popup__container popup__container_form">
+        <button type="button" class="popup__close-button button"></button>
+        <form class="popup__form" name="deleteform" novalidate>
+          <h2 class="popup__form-title">Вы уверены?</h2>
+          <button type="submit" class="popup__form-submit-button button">Да</button>
+        </form>
+      </div>
+    </div>
+
+
   </div>
   <template class="tempcard">
     <li class="card">
       <img src="<%=require('./images/favicon.png')%>" class="card__image button" alt="temp">
       <div class="card__alt">
         <h2 class="card__title"></h2>
-        <button class="card__like button" type="button"></button>
+        <div class="card__like-container">
+          <button class="card__like button" type="button"></button>
+          <p class="card__like-number">1</p>
+        </div>
       </div>
       <button type="button" class="card__trash-button button"></button>
     </li>

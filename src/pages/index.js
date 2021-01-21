@@ -3,12 +3,17 @@ import './index.css';
 import {
   popupProfileSelector, 
   popupAddCardSelector, 
+  popupAvatarSelector,
   editButton, 
   newPlaceButton,
   profileForm,
   newCardForm,
+  avatarForm,
   nameSelector,
   jobSelector,
+  avatarSelector,
+  avatarEditButtonSelector,
+  avatarButtonVisible,
   cardsListSelector,
   cardTemplateSelector,
   validationSettings,
@@ -25,15 +30,34 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
+import Avatar from '../components/Avatar.js';
 
 
 const profileFormValidation = new FormValidator(validationSettings, profileForm);
 profileFormValidation.enableValidation();
 const newCardFormValidation = new FormValidator(validationSettings, newCardForm);
 newCardFormValidation.enableValidation();
+const newAvatarFormValidation = new FormValidator(validationSettings, avatarForm);
+newAvatarFormValidation.enableValidation();
+
+const avatar = new Avatar(avatarSelector, avatarEditButtonSelector, avatarButtonVisible, {
+  handleEditButton: () => {
+    popupAvatar.open();
+  }
+});
+
+avatar.enableEditButton();
+
+const popupAvatar = new PopupWithForm(popupAvatarSelector, {
+  handleFormSubmit: (values) => {
+    avatar.setNewAvatar(values);
+    popupAvatar.close();
+  }
+});
+
+popupAvatar.setEventListeners();
 
 const userInfo = new UserInfo(nameSelector, jobSelector);
-
 
 const popupProfile = new PopupWithForm(popupProfileSelector, {
   handleFormSubmit: (values) => {
