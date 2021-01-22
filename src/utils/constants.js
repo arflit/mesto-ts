@@ -18,7 +18,7 @@ export const avatarSelector = '.profile__avatar';
 export const avatarEditButtonSelector = '.profile__avatar-edit-button';
 export const avatarButtonVisible = 'profile__avatar-edit-button_visible';
 export const nameSelector = '.profile__name';
-export const jobSelector = '.profile__job';
+export const aboutSelector = '.profile__about';
 //Добавление карточек
 export const cardsListSelector = '.cards__list';
 export const cardTemplateSelector = '.tempcard';
@@ -30,29 +30,6 @@ export const validationSettings = {
   inputErrorClass: 'popup__form-input_type_error',
   errorClass: 'popup__form-error_visible'
 }
-export const initialCards = [
-  {
-      place: 'Архыз',
-      picture: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-      place: 'Челябинская область',
-      picture: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-      place: 'Иваново',
-      picture: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-      place: 'Камчатка',
-      picture: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-      place: 'Холмогорский район',
-      picture: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-      place: 'Байкал',
-      picture: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-]; 
+//Api
+export const apiBaseUrl = 'https://mesto.nomoreparties.co/v1/cohort-19';
+export const apiAutorizationToken = '0ea9232f-20d8-4231-b26e-2828aaef49f5'

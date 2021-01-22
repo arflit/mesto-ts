@@ -25,7 +25,7 @@
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button type="button" class="profile__edit-button button"></button>
           </div>
-          <p class="profile__job">Исследователь океана</p>
+          <p class="profile__about">Исследователь океана</p>
         </div>
         <button type="button" class="profile__add-button button"></button>
       </section>
@@ -46,8 +46,8 @@
           <h2 class="popup__form-title">Редактировать профиль</h2>
           <input type="text" class="popup__form-input" id="name" name="name" placeholder="Введите имя" required minlength="2" maxlength="40">
           <div class="popup__form-error-container"><span class="name-error popup__form-error"></span></div>
-          <input type="text" class="popup__form-input" id="job" name="job" placeholder="А чем заниметесь?" required minlength="2" maxlength="200">
-          <div class="popup__form-error-container"><span class="job-error popup__form-error"></span></div>
+          <input type="text" class="popup__form-input" id="about" name="about" placeholder="А чем заниметесь?" required minlength="2" maxlength="200">
+          <div class="popup__form-error-container"><span class="about-error popup__form-error"></span></div>
           <button type="submit" class="popup__form-submit-button button">Сохранить</button>
         </form>
       </div>
@@ -70,10 +70,10 @@
         <button type="button" class="popup__close-button button"></button>
         <form class="popup__form" name="addcardform" novalidate>
           <h2 class="popup__form-title">Новое место</h2>
-          <input type="text" class="popup__form-input" id="place" name="place" placeholder="Название" required minlength="2" maxlength="30">
-          <div class="popup__form-error-container"><span class="place-error popup__form-error"></span></div>
-          <input type="url" class="popup__form-input" id="picture" name="picture" placeholder="Ссылка на картинку" required>
-          <div class="popup__form-error-container"><span class="picture-error popup__form-error"></span></div>
+          <input type="text" class="popup__form-input" id="name" name="name" placeholder="Название" required minlength="2" maxlength="30">
+          <div class="popup__form-error-container"><span class="name-error popup__form-error"></span></div>
+          <input type="url" class="popup__form-input" id="link" name="link" placeholder="Ссылка на картинку" required>
+          <div class="popup__form-error-container"><span class="link-error popup__form-error"></span></div>
           <button type="submit" class="popup__form-submit-button button">Сохранить</button>
         </form>
       </div>
@@ -106,10 +106,10 @@
         <h2 class="card__title"></h2>
         <div class="card__like-container">
           <button class="card__like button" type="button"></button>
-          <p class="card__like-number">1</p>
+          <p class="card__like-number"></p>
         </div>
       </div>
-      <button type="button" class="card__trash-button button"></button>
+      <button type="button" class="card__trash-button  card__trash-button_hidden button"></button>
     </li>
   </template>
 </body>

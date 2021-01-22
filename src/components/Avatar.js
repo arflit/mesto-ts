@@ -19,7 +19,11 @@ export default class Avatar {
   }
 
   setNewAvatar(values) {
-    this._avatar.src = values.avatar;
+    return new Promise((resolve, reject) => {
+      this._avatar.src = values.avatar;
+      this._avatar.onerror = reject;
+      this._avatar.onload = resolve;
+    });
   }
 
 }
