@@ -98,6 +98,8 @@ editButton.addEventListener('click', function(){
 
 const popupNewCard = new PopupWithForm(popupAddCardSelector, {
   handleFormSubmit: (values) => {
+    values.name = values.place;
+    delete values.place;
     popupNewCard.setButtonLoading();
     api.addNewCard(values)
     .then((data) => {
