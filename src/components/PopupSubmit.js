@@ -9,14 +9,14 @@ export default class PopupSubmit extends PopupWithForm {
     this._data = data;
   }
 
-  _resetButton() {
+  resetButton() {
     this._submitButton.innerHTML = 'Да';
     this._submitButton.classList.remove('popup__form-submit-button_loading');
   }
 
   close() {
     super.close();
-    this._resetButton();
+    this.resetButton();
   }
 
   setEventListeners() {

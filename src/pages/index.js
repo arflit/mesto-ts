@@ -64,7 +64,8 @@ const popupAvatar = new PopupWithForm(popupAvatarSelector, {
     popupAvatar.setButtonLoading();
     api.setNewAvatar(values.avatar)
     .then((url) => {avatar.setNewAvatar(values);})
-    .then(() => {popupAvatar.close();});
+    .then(() => {popupAvatar.close();})
+    .catch(() => {popupAvatar.resetButton();});
     }
 });
 
@@ -84,7 +85,8 @@ const popupProfile = new PopupWithForm(popupProfileSelector, {
     popupProfile.setButtonLoading();
     api.updateUserInfo(values)
     .then((data) => {userInfo.setUserInfo(data);})
-    .then(() => {popupProfile.close();})    
+    .then(() => {popupProfile.close();})
+    .catch(() => {console.log('hi');});
   }
 });
 
@@ -104,8 +106,10 @@ const popupNewCard = new PopupWithForm(popupAddCardSelector, {
     api.addNewCard(values)
     .then((data) => {
       defaultCardList.addItem(data);
-    });
-    popupNewCard.close();
+    })
+    .then(() => {popupNewCard.close();})
+    .catch(() => {popupNewCard.resetButton();});
+    
   }
 });
 
@@ -121,10 +125,10 @@ const popupDeleteCard = new PopupSubmit(popupDeleteCardSelector, {
     api.removeCard(id)
     .then(() => {  
       console.log(card);
-      card.remove();
+      card.remove(); // "удаление карточки в шаблоне необходимо делать только после отправки запроса на сервер" - так это так и есть: вот, после, через .then
     })
-    .then(() => {    popupDeleteCard.close();
-    });
+    .then(() => {popupDeleteCard.close();})
+    .catch(() => {popupDeleteCard.resetButton();});
   }
 });
 

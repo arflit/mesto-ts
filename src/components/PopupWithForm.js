@@ -23,7 +23,7 @@ export default class PopupWithForm extends Popup {
 
   }
 
-  _resetButton() {
+  resetButton() {
     this._submitButton.innerHTML = 'Сохранить';
     this._submitButton.classList.remove('popup__form-submit-button_loading');
   }
@@ -46,6 +46,6 @@ export default class PopupWithForm extends Popup {
   close() {
     super.close();
     this._form.reset();
-    this._resetButton();
+    this.resetButton();
   }
 }
