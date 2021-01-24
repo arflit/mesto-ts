@@ -63,22 +63,36 @@ const popupAvatar = new PopupWithForm(popupAvatarSelector, {
   handleFormSubmit: (values) => {
     popupAvatar.setButtonLoading();
     api.setNewAvatar(values.avatar)
-    .then((url) => {avatar.setNewAvatar(values);})
+    .then((data) => {avatar.setNewAvatar(data);})
     .then(() => {popupAvatar.close();})
-    .catch(() => {popupAvatar.resetButton();});
+    .catch((err) => {
+      console.log(`Почему-то не получилось обновить аватар: ${err}`);
+      popupAvatar.resetButton();
+    });
     }
 });
 
 popupAvatar.setEventListeners();
 
 let myID = '';
+
 const userInfo = new UserInfo(nameSelector, aboutSelector);
-api.getUserInfo()
+
+function getUserInfo () {
+  return api.getUserInfo();
+}
+
+getUserInfo()
   .then((data) => {
     userInfo.setUserInfo(data);
     avatar.setNewAvatar(data);
     myID = data._id;
+  })
+  .catch((err) => {
+    console.log(`Почему-то не получилось получить с сервера информацию о пользователе: ${err}`);
   });
+
+
 
 const popupProfile = new PopupWithForm(popupProfileSelector, {
   handleFormSubmit: (values) => {
@@ -86,7 +100,10 @@ const popupProfile = new PopupWithForm(popupProfileSelector, {
     api.updateUserInfo(values)
     .then((data) => {userInfo.setUserInfo(data);})
     .then(() => {popupProfile.close();})
-    .catch(() => {console.log('hi');});
+    .catch((err) => {
+      console.log(`Почему-то не получилось установить пользователя: ${err}`);
+      popupProfile.resetButton();
+    });
   }
 });
 
@@ -108,7 +125,10 @@ const popupNewCard = new PopupWithForm(popupAddCardSelector, {
       defaultCardList.addItem(data);
     })
     .then(() => {popupNewCard.close();})
-    .catch(() => {popupNewCard.resetButton();});
+    .catch((err) => {
+      console.log(`Почему-то не получилось создать новую карточку: ${err}`);
+      popupNewCard.resetButton();
+    });
     
   }
 });
@@ -124,11 +144,13 @@ const popupDeleteCard = new PopupSubmit(popupDeleteCardSelector, {
     popupDeleteCard.setButtonLoading();
     api.removeCard(id)
     .then(() => {  
-      console.log(card);
-      card.remove(); // "удаление карточки в шаблоне необходимо делать только после отправки запроса на сервер" - так это так и есть: вот, после, через .then
+      card.handleCardRemove(); 
     })
     .then(() => {popupDeleteCard.close();})
-    .catch(() => {popupDeleteCard.resetButton();});
+    .catch((err) => {
+      console.log(`Почему-то не получилось удалить карточку: ${err}`);
+      popupDeleteCard.resetButton();
+    });
   }
 });
 
@@ -138,23 +160,33 @@ const popupWithImage = new PopupWithImage(popupWithImageSelector, popupWithImage
 
 popupWithImage.setEventListeners();
 
+
+function getInitialCards () {
+  return api.getInitialCards();
+}
+
+const initialCards = getInitialCards();
+  
+const promises = [getUserInfo(), initialCards];
+
 let defaultCardList = {};
 
-const getInitialCards =  api.getInitialCards();
-getInitialCards
+Promise.all(promises)
+.then(
+  initialCards
+)
   .then((data) => {
-
     defaultCardList = new Section({
-      items: data,
+      items: data[1],
       renderer: (data) => {
         const cardElement = new Card(myID, data, cardTemplateSelector, {
           handleCardClick: (placeImage, placeTitle) => {
             popupWithImage.open(placeImage, placeTitle);  
           }, 
-          handleCardRemove: (card) => {
+          handleCardRemove: () => {
             const id = cardElement.getCardID();
             popupDeleteCard.open({ 
-              card: card, 
+              card: cardElement, 
               id: id });
           },
           handleLikeClick: (evt) => {
@@ -162,12 +194,18 @@ getInitialCards
               api.removeCardLike(cardElement.getCardID())
               .then((data) => {
                 cardElement.refreshLikes(data);
+              })
+              .catch((err) => {
+                console.log(`Почему-то не получилось удалить лайк: ${err}`);
               });
             }
             else {
               api.addCardLike(cardElement.getCardID())
               .then((data) => {
                 cardElement.refreshLikes(data);
+              })
+              .catch((err) => {
+                console.log(`Почему-то не получилось поставить лайк: ${err}`);
               });
             }
             

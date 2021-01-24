@@ -16,11 +16,7 @@ export default class Api {
             return res.json();
           }
           return Promise.reject(`Ошибка: ${res.status}`);
-        })
-        .catch((err) => {
-          console.log(err);
-        });    
-  
+        })  
     } else {
       return fetch(`${this._baseUrl}${urlEnd}`, {
         method: method,
@@ -33,10 +29,6 @@ export default class Api {
           }
           return Promise.reject(`Ошибка: ${res.status}`);
         })
-        .catch((err) => {
-          console.log(err);
-        });    
-  
     }
   }
 
