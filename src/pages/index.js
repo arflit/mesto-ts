@@ -22,7 +22,8 @@ import {
   popupWithImageTitleSelector,
   popupDeleteCardSelector,
   apiBaseUrl,
-  apiAutorizationToken
+  apiAutorizationToken,
+  animals
 } from '../utils/constants.js';
 
 import Card from '../components/Card.js';
@@ -74,31 +75,11 @@ const popupAvatar = new PopupWithForm(popupAvatarSelector, {
 
 popupAvatar.setEventListeners();
 
-let myID = '';
-
-const userInfo = new UserInfo(nameSelector, aboutSelector);
-
-function getUserInfo () {
-  return api.getUserInfo();
-}
-
-getUserInfo()
-  .then((data) => {
-    userInfo.setUserInfo(data);
-    avatar.setNewAvatar(data);
-    myID = data._id;
-  })
-  .catch((err) => {
-    console.log(`Почему-то не получилось получить с сервера информацию о пользователе: ${err}`);
-  });
-
-
-
 const popupProfile = new PopupWithForm(popupProfileSelector, {
   handleFormSubmit: (values) => {
     popupProfile.setButtonLoading();
     api.updateUserInfo(values)
-    .then((data) => {userInfo.setUserInfo(data);})
+    .then((data) => {myUserInfo.setUserInfo(data);})
     .then(() => {popupProfile.close();})
     .catch((err) => {
       console.log(`Почему-то не получилось установить пользователя: ${err}`);
@@ -110,7 +91,7 @@ const popupProfile = new PopupWithForm(popupProfileSelector, {
 popupProfile.setEventListeners();
 
 editButton.addEventListener('click', function(){
-  popupProfile.setInputValues(userInfo.getUserInfo());
+  popupProfile.setInputValues(myUserInfo.getUserInfo());
   popupProfile.open();
 });
 
@@ -161,23 +142,29 @@ const popupWithImage = new PopupWithImage(popupWithImageSelector, popupWithImage
 popupWithImage.setEventListeners();
 
 
-function getInitialCards () {
-  return api.getInitialCards();
+/* function setAnimals(animals) {
+  const number = Math.floor(Math.random() * 20);
+  api.addNewCard(animals[number]);
 }
 
-const initialCards = getInitialCards();
-  
-const promises = [getUserInfo(), initialCards];
+setAnimals(animals);
+ */
 
+let myID = '';
 let defaultCardList = {};
 
-Promise.all(promises)
-.then(
-  initialCards
-)
+const myUserInfo = new UserInfo(nameSelector, aboutSelector);
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+.then((data) => {
+  myUserInfo.setUserInfo(data[0]);
+  avatar.setNewAvatar(data[0]);
+  myID = data[0]._id;
+  return data[1];
+})
   .then((data) => {
     defaultCardList = new Section({
-      items: data[1],
+      items: data,
       renderer: (data) => {
         const cardElement = new Card(myID, data, cardTemplateSelector, {
           handleCardClick: (placeImage, placeTitle) => {
