@@ -142,13 +142,13 @@ const popupWithImage = new PopupWithImage(popupWithImageSelector, popupWithImage
 popupWithImage.setEventListeners();
 
 
-/* function setAnimals(animals) {
+ function setAnimals(animals) {
   const number = Math.floor(Math.random() * 20);
   api.addNewCard(animals[number]);
 }
 
 setAnimals(animals);
- */
+
 
 let myID = '';
 let defaultCardList = {};

@@ -54,7 +54,7 @@ export const animals = [
     link: 'https://i.ucrazy.ru/files/i/2007.11.15/1195136714_watchful_eyes_bengal_tiger.jpg',
     name: 'Тигр'
   },  {
-    link: 'https://cdn.photosight.ru/img/2/51f/5739804_large.jpg',
+    link: 'https://proprikol.ru/wp-content/uploads/2020/08/kartinki-krysy-14.jpg  ',
     name: 'Крыса'
   },  {
     link: 'https://lorises.ru/wp-content/uploads/kupayut-li-homyakov_4.jpg',
