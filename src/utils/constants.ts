@@ -1,27 +1,27 @@
 //Попапы
-export const popupProfileSelector = '#popup-profile';
-export const popupAddCardSelector = '#popup-addcard';
-export const popupWithImageSelector = '#popup-bigpicture';
-export const popupWithImagePictureSelector = '.popup__picture';
-export const popupWithImageTitleSelector = '.popup__pic-title';
-export const popupAvatarSelector = '#popup-avatar';
-export const popupDeleteCardSelector = "#popup-delete-card";
+export const popupProfileSelector: string  = '#popup-profile';
+export const popupAddCardSelector: string  = '#popup-addcard';
+export const popupWithImageSelector: string  = '#popup-bigpicture';
+export const popupWithImagePictureSelector: string  = '.popup__picture';
+export const popupWithImageTitleSelector: string  = '.popup__pic-title';
+export const popupAvatarSelector: string  = '#popup-avatar';
+export const popupDeleteCardSelector: string  = "#popup-delete-card";
 //Кнопки вызова
-export const editButton = document.querySelector('.profile__edit-button');
-export const newPlaceButton = document.querySelector('.profile__add-button');
+export const editButton: HTMLElement = document.querySelector('.profile__edit-button') as HTMLElement;
+export const newPlaceButton: HTMLElement = document.querySelector('.profile__add-button') as HTMLElement;
 //Формы 
 export const profileForm = document.forms.editform;
 export const newCardForm = document.forms.addcardform;
 export const avatarForm = document.forms.avatarform;
 //Содержимое страницы 
-export const avatarSelector = '.profile__avatar';
-export const avatarEditButtonSelector = '.profile__avatar-edit-button';
-export const avatarButtonVisible = 'profile__avatar-edit-button_visible';
-export const nameSelector = '.profile__name';
-export const aboutSelector = '.profile__about';
+export const avatarSelector: string  = '.profile__avatar';
+export const avatarEditButtonSelector: string  = '.profile__avatar-edit-button';
+export const avatarButtonVisible: string  = 'profile__avatar-edit-button_visible';
+export const nameSelector: string  = '.profile__name';
+export const aboutSelector: string  = '.profile__about';
 //Добавление карточек
-export const cardsListSelector = '.cards__list';
-export const cardTemplateSelector = '.tempcard';
+export const cardsListSelector: string  = '.cards__list';
+export const cardTemplateSelector: string  = '.tempcard';
 export const validationSettings = {
   formSelector: '.popup__form',
   inputSelector: '.popup__form-input',
@@ -31,10 +31,11 @@ export const validationSettings = {
   errorClass: 'popup__form-error_visible'
 }
 //Api
-export const apiBaseUrl = 'https://mesto.nomoreparties.co/v1/cohort-19';
-export const apiAutorizationToken = '0ea9232f-20d8-4231-b26e-2828aaef49f5'
+export const apiBaseUrl: string  = 'https://mesto.nomoreparties.co/v1/cohort-19';
+export const apiAutorizationToken: string  = '0ea9232f-20d8-4231-b26e-2828aaef49f5'
 //Звери
-export const animals = [
+type Animal = {link: string, name: string}
+export const animals: Animal[] = [
   {
     link: 'https://cdn.sm-news.ru/wp-content/uploads/2020/06/17/s1200-4-1.jpg',
     name: 'Лошадка'
